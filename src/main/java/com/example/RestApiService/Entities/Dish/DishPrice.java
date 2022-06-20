@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
+
 @Entity
 @Table(name = "dishes_price")
 public class DishPrice {
@@ -57,4 +59,22 @@ public class DishPrice {
     public void setDish(Dish dish) {
         this.dish = dish;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        DishPrice that = (DishPrice) o;
+        return Objects.equals(dish, that.dish);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dish);
+    }
+
+
 }

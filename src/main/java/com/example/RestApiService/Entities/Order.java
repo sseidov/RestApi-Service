@@ -1,5 +1,8 @@
 package com.example.RestApiService.Entities;
 
+import com.example.RestApiService.Entities.Dish.Dish;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.security.Timestamp;
 import java.util.ArrayList;
@@ -25,9 +28,9 @@ public class Order {
     @Column(name = "comments")
     private String comments;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id", nullable = false)
-        private Customer customer;
+    @JsonBackReference
+    @ManyToOne
+    private Customer customer;
 
     public Order() {
     }
@@ -72,4 +75,10 @@ public class Order {
         this.comments = comments;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 }

@@ -1,9 +1,8 @@
 package com.example.RestApiService.Entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 
 @Entity
@@ -32,8 +31,9 @@ public class Customer {
     @Column(name = "details")
     private String details;
 
+
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> customerOrders = new ArrayList<>();
+    private List<Order> orders ;
 
     public Customer() {
     }
@@ -92,6 +92,13 @@ public class Customer {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
 }

@@ -14,6 +14,7 @@ public class DishPriceService {
     //Заменить тип инъекции
     @Autowired
     DishPriceRepository dishPriceRepository;
+
     @Autowired
     DishRepository dishRepository;
 

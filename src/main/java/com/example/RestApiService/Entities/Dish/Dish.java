@@ -24,6 +24,7 @@ public class Dish {
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "dish")
     private List<DishPrice> dishPriceList;
 
+
     public Dish() {
     }
     // Добавления новой цены при изменении блюда

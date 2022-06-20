@@ -49,6 +49,17 @@ public class CustomerController {
         }
     }
 
+    @GetMapping("/get")
+    public ResponseEntity getUserByName(@RequestParam String username) {
+        try {
+            return ResponseEntity.ok(customerService.getUserByUsername(username));
+        } catch (CustomerNotFoundException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Произошла ошибка вывода данных о клиенте");
+        }
+    }
+
     @DeleteMapping("/del/{id}")
     public ResponseEntity deleteUser(@PathVariable Long id){
         try {

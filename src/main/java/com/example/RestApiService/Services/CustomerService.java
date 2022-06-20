@@ -30,6 +30,14 @@ public class CustomerService {
         return CustomerModel.toModel(customer);
     }
 
+    public CustomerModel getUserByUsername(String username) throws CustomerNotFoundException {
+        Customer customer = customerRepository.findByUsername(username);
+        if(customerRepository.findByUsername(username).getUsername() == null){
+            throw new CustomerNotFoundException("Пользователь не найден");
+        }
+        return CustomerModel.toModel(customer);
+    }
+
     public Customer updateUser(Long id, Customer changedCustomer) throws CustomerNotFoundException {
         Customer customer = customerRepository.findById(id).get();
         if(customer == null){
